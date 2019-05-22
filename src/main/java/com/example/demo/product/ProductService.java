@@ -27,11 +27,15 @@ public class ProductService {
         Product product = productRepository.findProductById(id);
         product.setProductCode(productDetails.getProductCode());
         product.setProductName(productDetails.getProductName());
+        product.setProductPrice(productDetails.getProductPrice());
+        product.setProductCategory(productDetails.getProductCategory());
+        product.setProductDescription(productDetails.getProductDescription());
+        product. setProductQuantity(productDetails.getProductQuantity());
 
         return productRepository.save(product);
     }
 
-   // public void deleteProduct(int id){productRepository.deleteProductById(id);}
+    public void deleteProduct(int id){productRepository.deleteProductById(id);}
 
 
 }

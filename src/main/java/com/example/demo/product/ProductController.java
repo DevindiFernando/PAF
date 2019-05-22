@@ -34,11 +34,11 @@ public class ProductController {
             return new ResponseEntity<Product>(productService.updateProduct(id, product), HttpStatus.OK);
         }
 
-        /*@DeleteMapping("demo/products/{id}")
+        @DeleteMapping("demo/products/{id}")
         public ResponseEntity deleteProduct(@PathVariable int id) {
             productService.deleteProduct(id);
             return new ResponseEntity(HttpStatus.OK);
 
-        }*/
+        }
 
 }
