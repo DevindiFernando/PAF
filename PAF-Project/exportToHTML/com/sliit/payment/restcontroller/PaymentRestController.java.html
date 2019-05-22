@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>PaymentRestController.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #808080;}
+.ln { color: #606366; font-weight: normal; font-style: normal; }
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+PaymentRestController.java</font>
+</center></td></tr></table>
+<pre><a name="l1"><span class="ln">1    </span></a><span class="s0">package </span><span class="s1">com.sliit.payment.restcontroller</span><span class="s0">;</span>
+
+import <span class="s1">com.sliit.payment.beans.Payment</span><span class="s0">;</span>
+import <span class="s1">com.sliit.payment.entity.PaymentEntity</span><span class="s0">;</span>
+import <span class="s1">com.sliit.payment.services.PaymentService</span><span class="s0">;</span>
+import <span class="s1">org.springframework.beans.factory.annotation.Autowired</span><span class="s0">;</span>
+import <span class="s1">org.springframework.http.ResponseEntity</span><span class="s0">;</span>
+import <span class="s1">org.springframework.web.bind.annotation.*</span><span class="s0">;</span>
+
+import <span class="s1">javax.ws.rs.core.MediaType</span><span class="s0">;</span>
+import <span class="s1">java.util.ArrayList</span><span class="s0">;</span>
+import <span class="s1">java.util.List</span><span class="s0">;</span>
+
+
+<span class="s1">@RestController</span>
+@RequestMapping(<span class="s2">&quot;/api/v1/payment&quot;</span><span class="s1">)</span>
+<span class="s0">public class </span><span class="s1">PaymentRestController {</span>
+
+    @Autowired
+    <span class="s0">private </span><span class="s1">PaymentService paymentService</span><span class="s0">;</span>
+
+    <span class="s1">@PostMapping</span>
+    <span class="s0">public </span><span class="s1">ResponseEntity savePayment(@RequestBody PaymentEntity payment){</span>
+        <span class="s0">return </span><span class="s1">ResponseEntity.ok(paymentService.save(payment))</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    @PutMapping
+    <span class="s0">public </span><span class="s1">ResponseEntity updatePayment(@RequestBody PaymentEntity payment){</span>
+        <span class="s0">return </span><span class="s1">ResponseEntity.ok(paymentService.save(payment))</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    @DeleteMapping(value = <span class="s2">&quot;/{id}&quot;</span><span class="s1">)</span>
+    <span class="s0">public </span><span class="s1">ResponseEntity delete(@PathVariable(</span><span class="s2">&quot;id&quot;</span><span class="s1">) Long id){</span>
+        paymentService.deleteById(id)<span class="s0">;</span>
+        return <span class="s1">ResponseEntity.ok(</span><span class="s2">&quot;Success&quot;</span><span class="s1">)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    @GetMapping(value = <span class="s2">&quot;/{id}&quot;</span><span class="s1">)</span>
+    <span class="s0">public </span><span class="s1">ResponseEntity getById(@PathVariable(</span><span class="s2">&quot;id&quot;</span><span class="s1">) Long id){</span>
+        <span class="s0">return </span><span class="s1">ResponseEntity.ok(paymentService.findById(id))</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    @GetMapping
+    <span class="s0">public </span><span class="s1">ResponseEntity&lt;List&lt;PaymentEntity&gt;&gt; getList(){</span>
+        <span class="s0">return </span><span class="s1">ResponseEntity.ok(paymentService.findAll())</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+<span class="s3">//    @RequestMapping(value = &quot;/api/v1/payment/{id}&quot;,method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON)</span>
+//    public Payment getById(@PathVariable(&quot;id&quot;) Integer id){
+//        Payment payment = new Payment();
+//        payment.setId(10);
+//        return payment;
+//    }
+//
+//    @RequestMapping(value = &quot;/api/v1/payment/(id)&quot;,method = RequestMethod.PUT,consumes = MediaType.APPLICATION_JSON)
+//    public String updatePayment(@RequestBody Payment payment,@PathVariable(&quot;id&quot;) String id){
+//        //Update code
+//        return &quot;success&quot;;
+//    }
+//
+//    @RequestMapping(value = &quot;/api/v1/payment/{id}&quot;,method = RequestMethod.DELETE)
+//    public String deletePayment(@PathVariable(&quot;id&quot;) Integer id){
+//        //delete Code
+//        return &quot;success&quot;;
+//    }
+<span class="s1">}</span>
+</pre>
+</body>
+</html>
